@@ -1,0 +1,8 @@
+.CategoriesItem {
+    text-align: left;
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 4px;
+    padding-top: 8px;
+    cursor: pointer;
+    font-size: 1.3em;
+}

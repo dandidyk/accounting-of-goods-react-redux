@@ -1,0 +1,54 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #666;
+  color: white;
+}
+
+.app {
+  text-align: center;
+  max-width: 1200px;
+  padding: 20px;
+  margin: auto;
+}
+
+.app_header {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 30px;
+}
+
+.app_logo {
+  font-size: 56px;
+  line-height: 1.1;
+}
+
+.app_buttons {
+  margin: auto;
+}
+
+.app_btn {
+  border: none;
+  border-radius: 6px;
+  background-color: rgb(252, 185, 0);
+  font-size: 1.4em;
+  color: #fff;
+  padding: 19px 12px;
+  margin: 0 20px;
+}
+
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
