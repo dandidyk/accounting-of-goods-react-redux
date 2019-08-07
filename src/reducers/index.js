@@ -1,4 +1,4 @@
-import { ADD_CATEGORY, CHANGE_ACTIVE_CATEGORY } from '../constants/action-types'
+import { ADD_CATEGORY, CHANGE_ACTIVE_CATEGORY, DELETE_CATEGORY } from '../constants/action-types'
 
 const initialState = {
   categories: [
@@ -33,12 +33,25 @@ const rootReducer = (state = initialState, action) => {
     case ADD_CATEGORY:
       return {
         ...state,
-        categories: [...state.categories, action.payload],
+        categories: [...state.categories, action.payload]
       }
     case CHANGE_ACTIVE_CATEGORY:
       return {
         ...state,
-        activeCategory: action.payload,
+        activeCategory: action.payload
+      }
+    case DELETE_CATEGORY:
+      console.log(
+        state.goods
+          .filter(({ cat }) => cat === action.payload)
+          .map(({ name, id, price, retailPrice }) => ({ name, id, cat: 'withOut', price, retailPrice }))
+      )
+
+      return {
+        ...state,
+        categories: state.categories.filter(({ id }) => id !== action.payload),
+        goods: state.goods.map(product => (product.cat === action.payload ? { ...product, cat: 'withOut' } : product)),
+        activeCategory: 'withOut'
       }
     default:
       return state

@@ -3,9 +3,6 @@ import { connect } from 'react-redux'
 import './Table.css'
 
 const Table = ({ goods, activeCategory }) => {
-
-    console.log(goods.filter(({ cat }) => cat === activeCategory));
-    
   return (
     <div className='table'>
       <div className='table_head table_row'>
