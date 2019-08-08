@@ -1,4 +1,10 @@
-import { ADD_CATEGORY, CHANGE_ACTIVE_CATEGORY, DELETE_CATEGORY } from '../constants/action-types'
+import {
+  ADD_CATEGORY,
+  CHANGE_ACTIVE_CATEGORY,
+  DELETE_CATEGORY,
+  SHOW_POPUP,
+  HIDE_POPUP
+} from '../constants/action-types'
 
 const initialState = {
   categories: [
@@ -9,6 +15,8 @@ const initialState = {
     { name: 'WithOut Cat', id: 'withOut' }
   ],
   activeCategory: 'cat1',
+  showPopup: false,
+  popupContent: null, // deleteCategory, deleteProduct, addProduct, changeProduct, addCategory [type, id || null]
   goods: [
     { name: 'Product1', id: '1', cat: 'cat1', price: 2000, retailPrice: 5000 },
     { name: 'Product2', id: '2', cat: 'cat2', price: 2000, retailPrice: 5000 },
@@ -41,17 +49,22 @@ const rootReducer = (state = initialState, action) => {
         activeCategory: action.payload
       }
     case DELETE_CATEGORY:
-      console.log(
-        state.goods
-          .filter(({ cat }) => cat === action.payload)
-          .map(({ name, id, price, retailPrice }) => ({ name, id, cat: 'withOut', price, retailPrice }))
-      )
-
       return {
         ...state,
         categories: state.categories.filter(({ id }) => id !== action.payload),
         goods: state.goods.map(product => (product.cat === action.payload ? { ...product, cat: 'withOut' } : product)),
         activeCategory: 'withOut'
+      }
+    case SHOW_POPUP:
+      return {
+        ...state,
+        showPopup: true,
+        popupContent: action.payload
+      }
+    case HIDE_POPUP:
+      return {
+        ...state,
+        showPopup: false
       }
     default:
       return state
